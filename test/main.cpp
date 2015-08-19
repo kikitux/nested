@@ -52,20 +52,20 @@ TEST_CASE( "Vector fun", "[vector]" ) {
     std::vector<long> v1 = {1};
     v1.push_back(1);
     v1.push_back(1);
+    REQUIRE( v1.size() == 3 );
     REQUIRE(SumVector(v1) == 3*1 );
     REQUIRE(SumSquareVector(v1) == 3*1*1 );
     REQUIRE(SumCubeVector(v1) == 3*1*1*1 );
 
     std::vector<long> v2 = {2};
-    REQUIRE( v2.size() == 0 );
     v2.push_back(2);
     v2.push_back(2);
+    REQUIRE( v2.size() == 3 );
     REQUIRE(SumVector(v2) == 3*2 );
     REQUIRE(SumSquareVector(v2) == 3*2*2 );
     REQUIRE(SumCubeVector(v2) == 3*2*2*2 );
 
     std::vector<long> v3 = {3};
-    REQUIRE( v3.size() == 0 );
     v3.push_back(3);
     v3.push_back(3);
     REQUIRE( v3.size() == 3 );
