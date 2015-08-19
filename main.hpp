@@ -3,14 +3,14 @@
 
 #endif //NESTED_MAIN_HPP
 
-unsigned int Factorial(unsigned int number) {
+unsigned long Factorial(unsigned int number) {
   return number > 1 ? Factorial(number-1) *number : 1;
 }
 
-unsigned int Square(unsigned int number) {
+unsigned long Square(unsigned int number) {
   return number*number;
 }
 
-unsigned int Cube(unsigned int number) {
+long Cube(int number) {
     return number*number*number;
 }
