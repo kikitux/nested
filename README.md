@@ -21,9 +21,9 @@ travis job for this project can be found at: [https://travis-ci.org/kikitux/nest
 
 ### How this works?
 
-We use CMake generate 2 binaries, <code> and <code>t.
+We use CMake generate 2 binaries, `<code>` and `<code>`t.
 
-<code>t is the one that includes the tests, and executed on development or CI/CD (ie Travis-ci)
+`<code>`t is the one that includes the tests, and executed on development or CI/CD (ie Travis-ci)
 
 CLion:
 
