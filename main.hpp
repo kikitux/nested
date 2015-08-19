@@ -12,5 +12,5 @@ unsigned int Factorial(unsigned int number) {
 }
 
 unsigned int Square(unsigned int number) {
-  return number+number;
+  return number*number;
 }
