@@ -21,9 +21,9 @@ travis job for this project can be found at: [https://travis-ci.org/kikitux/nest
 
 ### How this works?
 
-We use CMake generate 2 binaries, `<code>` and `<code>`t.
+We use CMake generate 2 binaries, `<code>` and `<codet>`.
 
-`<code>`t is the one that includes the tests, and executed on development or CI/CD (ie Travis-ci)
+`<codet>` is the one that includes the tests, and executed on development or CI/CD (ie Travis-ci)
 
 CLion:
 
@@ -72,10 +72,10 @@ TEST_CASE( "Cubes are computed", "[cube]" ) {
 ```bash
 cmake .
 make
-build/<code>t
+build/<codet>
 ```
 
-sample output:
+sample output (osx):
 
 ```bash
 $ cmake .
