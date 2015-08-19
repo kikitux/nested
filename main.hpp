@@ -1,7 +1,3 @@
-//
-// Created by alvarom on 19/08/2015.
-//
-
 #ifndef NESTED_MAIN_HPP
 #define NESTED_MAIN_HPP
 
@@ -16,5 +12,5 @@ unsigned int Square(unsigned int number) {
 }
 
 unsigned int Cube(unsigned int number) {
-    return number+number+number;
+    return number*number*number;
 }
