@@ -4,7 +4,7 @@ This is a C++ sample project that use CMAKE and includes catch.h test
 
 ![https://travis-ci.org/kikitux/nested.svg](https://travis-ci.org/kikitux/nested.svg)
 
-```bash
+```text
 .
 |-- .travis.yml		// travis-ci conf file
 |-- CMakeLists.txt
