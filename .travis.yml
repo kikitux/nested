@@ -22,7 +22,7 @@ before_script:
 
 script:
   - make
-    && build/*t -s
+    && time build/*t -s
     ;
 
 branches:
