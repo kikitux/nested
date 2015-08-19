@@ -27,7 +27,7 @@ We use CMake generate 2 binaries, `<code>` and `<code>`t.
 
 CLion:
 
-![CLion](https://www.dropbox.com/s/hhc19wor3id9ii9/Screenshot%202015-08-19%2020.44.07.png?dl=1)
+![CLion](https://www.dropbox.com/s/y8ulpejj4wuht77/Screenshot%202015-08-19%2020.52.36.png?dl=1)
 
 Travis-ci:
 
