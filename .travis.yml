@@ -22,7 +22,7 @@ before_script:
 
 script:
   - make
-    && (build/*t || build/*t -s)
+    && build/*t -s
     ;
 
 branches:
