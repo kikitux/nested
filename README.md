@@ -4,6 +4,10 @@ This is a C++ sample project that use CMAKE and includes catch.h test
 
 ![https://travis-ci.org/kikitux/nested.svg](https://travis-ci.org/kikitux/nested.svg)
 
+travis job for this project can be found at: [https://travis-ci.org/kikitux/nested](https://travis-ci.org/kikitux/nested)
+
+### project structure
+
 ```text
 .
 |-- .travis.yml		// travis-ci conf file
@@ -17,7 +21,19 @@ This is a C++ sample project that use CMAKE and includes catch.h test
 
 ### How this works?
 
-CMake generate 2 binaries. code and codet. codet is the one that includes the tests, and executed on development or CI/CD (ie Travis-ci)
+We use CMake generate 2 binaries, <code> and <code>t.
+
+<code>t is the one that includes the tests, and executed on development or CI/CD (ie Travis-ci)
+
+CLion:
+
+![CLion](https://www.dropbox.com/s/hhc19wor3id9ii9/Screenshot%202015-08-19%2020.44.07.png?dl=1)
+
+Travis-ci:
+
+![travis-ci](https://www.dropbox.com/s/hhc19wor3id9ii9/Screenshot%202015-08-19%2020.44.07.png?dl=1)
+
+
 
 ### main.hpp
 
