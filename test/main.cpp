@@ -49,6 +49,14 @@ TEST_CASE( "Cubes are computed", "[cube]" ) {
 
 TEST_CASE( "Vector fun", "[vector]" ) {
 
+    std::vector<long> v0 = {0};
+    v0.push_back(0);
+    v0.push_back(0);
+    REQUIRE( v0.size() == 3 );
+    REQUIRE(SumVector(v0) == 3*0 );
+    REQUIRE(SumSquareVector(v0) == 3*0*0 );
+    REQUIRE(SumCubeVector(v0) == 3*0*0*0 );
+
     std::vector<long> v1 = {1};
     v1.push_back(1);
     v1.push_back(1);
