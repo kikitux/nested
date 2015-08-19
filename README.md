@@ -16,7 +16,7 @@ travis job for this project can be found at: [https://travis-ci.org/kikitux/nest
 |-- main.hpp		// main header. Functions are here
 `-- test
     |-- catch.hpp	// catch header file
-    `-- main.cpp	// test are here. Include main.cpp
+    `-- main.cpp	// test are here. Include ../main.hpp and catch.hpp
 ```
 
 ### How this works?
