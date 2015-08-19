@@ -1,6 +1,6 @@
 ### nested
 
-This is a C++ sample project that use CMAKE and includes catch.h test
+This is a C++ sample project that use CMAKE and includes catch.hpp test
 
 ![https://travis-ci.org/kikitux/nested.svg](https://travis-ci.org/kikitux/nested.svg)
 
