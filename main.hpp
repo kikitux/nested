@@ -38,3 +38,15 @@ long SumCubeVector(std::vector<long> vect){
         sum_of_elems += n*n*n;
     return sum_of_elems;
 }
+
+template<size_t N>
+struct fibonacci : std::integral_constant<size_t, fibonacci<N-1>{} + fibonacci<N-2>{}> {};
+template<> struct fibonacci<1> : std::integral_constant<size_t,1> {};
+template<> struct fibonacci<0> : std::integral_constant<size_t,0> {};
+
+int intfibonacci(int N) {
+    if ( N == 0 ) return 0;
+    else if ( N == 1 ) return 1;
+    else
+        return (intfibonacci(N-1) + intfibonacci(N-2));
+}

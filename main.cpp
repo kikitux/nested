@@ -4,13 +4,18 @@
 
 using namespace std;
 
+
+
 int main() {
+    cout << "\n";
     unsigned int number = 0;
     cout << "Insert a number to calculate funtions ?:";
     cin >> number ;
     cout << "Factorial of " << number << " is " << Factorial(number) << "\n" ;
     cout << "Square of " << number << " is " << Square(number) << "\n" ;
     cout << "Cube of " << number << " is " << Cube(number) << "\n" ;
+    cout << "\n";
+    cout << "Fibonacci number of " << number << " is " << intfibonacci(number) << "\n";
     cout << "\n";
     vector<long> v = {}; // v.size() == 0
     long input = 0;

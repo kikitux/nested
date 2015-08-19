@@ -82,3 +82,14 @@ TEST_CASE( "Vector fun", "[vector]" ) {
     REQUIRE(SumCubeVector(v3) == 3*3*3*3 );
 
 }
+
+TEST_CASE( "Fibonnaci fun", "[fibonnaci]" ) {
+    constexpr long fibo40 = fibonacci<40>();
+    constexpr long fibo50 = fibonacci<50>();
+    constexpr long fibo60 = fibonacci<60>();
+
+    REQUIRE(fibo40==102334155);
+    REQUIRE(fibo50==12586269025);
+    REQUIRE(fibo60==1548008755920);
+
+}
