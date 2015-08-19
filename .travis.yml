@@ -28,6 +28,7 @@ script:
 branches:
   only:
     - master
+    - /^f-.*$/
 
 env:
   - LANG="en_US.UTF-8"
