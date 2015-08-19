@@ -90,7 +90,8 @@ Scanning dependencies of target nestedt
 [ 75%] Building CXX object CMakeFiles/nestedt.dir/test/main.cpp.o
 [100%] Linking CXX executable build/nestedt
 [100%] Built target nestedt
-alvaros-Mac-mini:nested2 alvarom$ build/nestedt
+
+$ build/nestedt
 ===============================================================================
 All tests passed (30 assertions in 3 test cases)
 
