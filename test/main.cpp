@@ -23,5 +23,12 @@ TEST_CASE( "Square are computed", "[square]" ) {
     REQUIRE( Square(4) == 16 );
     REQUIRE( Square(10) == 100 );
     REQUIRE( Square(20) == 400 );
+}
 
+TEST_CASE( "Square are computed", "[cube]" ) {
+    REQUIRE( Cube(0) == 0 );
+    REQUIRE( Cube(1) == 1 );
+    REQUIRE( Cube(2) == 8 );
+    REQUIRE( Cube(3) == 27 );
+    REQUIRE( Cube(10) == 1000 );
 }

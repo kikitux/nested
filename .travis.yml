@@ -22,7 +22,7 @@ before_script:
 
 script:
   - make
-    && find build/ -maxdepth 1 -type f -perm -001 -name '*t' -exec {} \;
+    && find build/ -maxdepth 1 -type f -perm -001 -name '*t' -exec {} -s \;
     ;
 
 branches:

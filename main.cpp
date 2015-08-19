@@ -10,5 +10,6 @@ int main() {
     cin >> number ;
     cout << "Factorial of " << number << " is " << Factorial(number) << "\n" ;
     cout << "Square of " << number << " is " << Square(number) << "\n" ;
+    cout << "Cube of " << number << " is " << Cube(number) << "\n" ;
     return 0;
 }
