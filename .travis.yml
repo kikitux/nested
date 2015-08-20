@@ -22,6 +22,9 @@ before_script:
       && $CMAKE/bin/cmake .
       ;
     fi
+    ;
+    env | grep ^TRAVIS
+    ;
 
 script:
   - make
