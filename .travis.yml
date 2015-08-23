@@ -10,6 +10,7 @@ addons:
     packages:
     - cmake
     - g++-4.8
+    - jq
 
 sudo: false
 
@@ -34,6 +35,7 @@ before_script:
       && $CMAKE/bin/cmake .
       ;
     fi
+  - export tag_name="`curl -L https://api.github.com/repos/kikitux/nested/releases/latest 2>/dev/null | jq -r '.tag_name'`"
   - env | grep ^TRAVIS
 
 script:
@@ -44,6 +46,7 @@ script:
     fi
 
 after_script:
+  - echo $tag_name
   - if [ "${TRAVIS_TAG}" ]; then
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod build/nested ;
     else
@@ -69,14 +72,3 @@ deploy:
     on:
       tags: true
       all_branches: true
-  - provider: releases
-    prerelease: true
-    api_key:
-      secure: "ZUmRYxVIU3d9SsRrMx+c+28fAuXc+ianMp8WRKI/WbFkqZqUji5HTlLZ1dAbcH0xmukE7OVUO9vKCM1ZXAhYeTCAfVZ1y43PJatMYaVulVJmZb0+KeWKUyd3WXpSuz7dksZtaocszYkDGOlxwyOF0bIXjKfuVwf1R8GKUOuJ66Q9u10rj0TT+ZNQZHjclGSie+BDx6v/iwOXrYexgjBEnk6cBtZsVFXhiv0qCLzaxGCFMjT5R56qUToCTJgS7maNK8cK2f9pUUDa8ZE3+iE7LQiABsvgNaNSyRlRUrU/ybU82bqhr2pheFInFF7qZ9IKfzGwM7aS2dL2MJVkZN6/+qn0+Icfq2AgHJjsMR2OfbOgNUH/CHe0Zjy7/zbW31x34u3r8UE4Sizxwd+9wFGchy1i6aqqChNcYRRO5fimwzN+dbsYG6Nbl+MQHjkB73/eh/JR97zgSClcE6ej2TQoZwfOKdJR7xv518QMQBFPeg8SLfXVpe6/f3kXdpoetmmnL9mEB9UcUQgKY4lrO9f44uO6H70SZ1jjF5zupwdgo7FgUhobroSPj+iyHRYn1h+rLwxWmfXi5yfNRUiBT9yWuOYvAVuAG6UI+tFPoZTAnQceA+1hxyRum6bDeBF1UD9ZtPBTWqm4ZfvOAQsnuoCj9vUsGA7Zhv5RG1J8SaJhwy4="
-    file_glob: true
-    file: "build/nested-*"
-    skip_cleanup: true
-    on:
-      tags: false
-      all_branches: true
-
