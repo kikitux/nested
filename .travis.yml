@@ -10,6 +10,8 @@ addons:
     packages:
     - cmake
     - g++-4.8
+    - virt-what
+    - strace
 
 sudo: true
 
@@ -33,6 +35,7 @@ before_script:
       ;
     fi
   - env | grep ^TRAVIS
+  - sudo virt-what
 
 script:
   - if [ "${TRAVIS_TAG}" ]; then
@@ -43,7 +46,7 @@ script:
 
 after_script:
   - which dpl || (gem install dpl ; hash -r)
-  - dpl --provider=atlas --token=$ATLAS_TOKEN --app=alvaro/nested-dev --include="build/nested"
+  - strace -f dpl --provider=atlas --token=$ATLAS_TOKEN --app=alvaro/nested-dev --include="build/nested"
 
 env:
   - LANG="en_US.UTF-8"
