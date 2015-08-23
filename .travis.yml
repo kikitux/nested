@@ -4,7 +4,7 @@ rvm:
   - 2.2.2
 
 git:
-  submodules: false
+  submodules: true
   
 addons:
   apt:
@@ -45,7 +45,7 @@ script:
     fi
 
 after_script:
-  - ruby version
+  - ruby -v
   - gem install dpl
   - hash -r
   - dpl --provider=atlas --token=$ATLAS_TOKEN --app=alvaro/nested-dev --include="build/nested"
