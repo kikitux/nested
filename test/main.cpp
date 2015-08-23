@@ -41,6 +41,7 @@ TEST_CASE( "Cubes are computed", "[cube]" ) {
     REQUIRE( Cube(-1) == -1 );
     REQUIRE( Cube(-1) == - Cube(1));
     REQUIRE( Cube(0) == 0 );
+    REQUIRE( Cube(0) == 1 );
     REQUIRE( Cube(1) == 1 );
     REQUIRE( Cube(2) == 8 );
     REQUIRE( Cube(3) == 27 );

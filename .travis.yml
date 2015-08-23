@@ -32,7 +32,6 @@ before_script:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
       export CMAKE="cmake-3.3.0-Linux-x86_64"
       && $CMAKE/bin/cmake .
-      ;
     fi
   - env | grep ^TRAVIS
 
@@ -44,7 +43,11 @@ script:
     fi
 
 after_script:
-  - ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev build/nested
+  - if [ "${TRAVIS_TAG}" ]; then
+      ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod build/nested ;
+    else
+      ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev build/nested ;
+    fi
 
 env:
   - LANG="en_US.UTF-8"
@@ -66,5 +69,3 @@ deploy:
       tags: true
       all_branches: true
 
-after_deploy:
-  - ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod build/nested
