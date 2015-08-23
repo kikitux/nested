@@ -44,7 +44,7 @@ os:
   - linux
 
 before_deploy:
-  - mv /build/nested /build/nested-${TRAVIS_OS_NAME}
+  - mv build/nested build/nested-${TRAVIS_OS_NAME}
 
 deploy: 
   - provider: releases
