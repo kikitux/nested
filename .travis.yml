@@ -1,5 +1,4 @@
 language: cpp
-
 addons:
   apt:
     sources:
@@ -7,41 +6,35 @@ addons:
     packages:
     - cmake
     - g++-4.8
-
 sudo: false
-
 compiler:
-  - gcc
-
+- gcc
 before_script:
-  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-      export CMAKE="cmake-3.3.0-Linux-x86_64"
-      && $CMAKE/bin/cmake .
-      ;
-    fi
-
+- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then export CMAKE="cmake-3.3.0-Linux-x86_64"
+  && $CMAKE/bin/cmake . ; fi
 script:
-  - make
-    && time build/*t -s
-    ;
-
+- make && time build/*t -s ;
 branches:
   only:
-    - master
-    - /^f-.*$/
-
+  - master
+  - "/^f-.*$/"
 env:
+  matrix:
   - LANG="en_US.UTF-8"
-
+  global:
+    - GH_REF: "kikitux/nested"
 install:
-  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-      CMAKE="cmake-3.3.0-Linux-x86_64"
-      && curl -o $CMAKE.sh http://www.cmake.org/files/v3.3/$CMAKE.sh
-      && sh $CMAKE.sh --skip-license --include-subdir
-      && export CXX="g++-4.8"
-      && export CC="gcc-4.8"
-      ;
-    fi
-
+- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then CMAKE="cmake-3.3.0-Linux-x86_64" && curl
+  -o $CMAKE.sh http://www.cmake.org/files/v3.3/$CMAKE.sh && sh $CMAKE.sh --skip-license
+  --include-subdir && export CXX="g++-4.8" && export CC="gcc-4.8" ; fi
 os:
-  - linux
+- linux
+before_deploy: "echo 'ready to deploy?'"
+  - provider: releases
+    api_key:
+      secure: "ZUmRYxVIU3d9SsRrMx+c+28fAuXc+ianMp8WRKI/WbFkqZqUji5HTlLZ1dAbcH0xmukE7OVUO9vKCM1ZXAhYeTCAfVZ1y43PJatMYaVulVJmZb0+KeWKUyd3WXpSuz7dksZtaocszYkDGOlxwyOF0bIXjKfuVwf1R8GKUOuJ66Q9u10rj0TT+ZNQZHjclGSie+BDx6v/iwOXrYexgjBEnk6cBtZsVFXhiv0qCLzaxGCFMjT5R56qUToCTJgS7maNK8cK2f9pUUDa8ZE3+iE7LQiABsvgNaNSyRlRUrU/ybU82bqhr2pheFInFF7qZ9IKfzGwM7aS2dL2MJVkZN6/+qn0+Icfq2AgHJjsMR2OfbOgNUH/CHe0Zjy7/zbW31x34u3r8UE4Sizxwd+9wFGchy1i6aqqChNcYRRO5fimwzN+dbsYG6Nbl+MQHjkB73/eh/JR97zgSClcE6ej2TQoZwfOKdJR7xv518QMQBFPeg8SLfXVpe6/f3kXdpoetmmnL9mEB9UcUQgKY4lrO9f44uO6H70SZ1jjF5zupwdgo7FgUhobroSPj+iyHRYn1h+rLwxWmfXi5yfNRUiBT9yWuOYvAVuAG6UI+tFPoZTAnQceA+1hxyRum6bDeBF1UD9ZtPBTWqm4ZfvOAQsnuoCj9vUsGA7Zhv5RG1J8SaJhwy4="
+    file: "build/nested"
+    on:
+      repo: kikitux/nested
+      tags: true
+      all_branches: true
