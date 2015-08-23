@@ -45,6 +45,7 @@ script:
     fi
 
 after_script:
+  - rvm install 2.2.2
   - rvm 2.2.2
   - ruby -v
   - gem install dpl
