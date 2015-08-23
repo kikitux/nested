@@ -65,19 +65,6 @@ deploy:
     on:
       tags: true
       all_branches: true
-  - provider: atlas
-    app: alvaro/nested-prod
-    include: build/nested 
-    on:
-      tags: true
-      all_branches: true
-    token:
-      secure: "jjFH42u++5x+ttFHYpew+tdz4kaReYTH9ThCcSDj6kVOUbRdwx0GDqsslzrvJ8g8dPoSHvBN0iD7/fXcpxol1h2Vce8Kz2g3ub/y+KVRHmqldhUjwdG8BNBrrASttKXLxqhUpcXQrk0PouuhvfsEWNMjG7wt0owr5RpTKVrwIzZxzO3/jGH/knLve3xCRppUbxWwUhdweNrPwbQtavh926SXaGErN3hRkqOeumQfJHaua8eI6U+wFDzvSeTXNQdWmFnhyiGgdgSTXRQYh7VpVDFKogkoY+HMUwEoLgnRTXNz/jlBEGonPtSEGW9Wgf2UMCCAhPR03JGFVQ9iBUdbmTqnJ2a1dw+Yw0VZn5MRPNhko4Oh1qmLugb0utCDx2gBTdQxleqEjzcaDET0EXomEu0M4GFUem2wv/vUDXEiTnUdTQno0JQUgATzFzCODVBH3hn5o33Q2xAkBpsbuBRI++V/DH0zEK5V+Mda0Cyquay1QTZ73oMOFrbuxRdsjO80RPPAJNjFMMZp/jQWO9x9n2Q0kB1RKYycNsSxDMdaSr1+PWXAWTqPo8mSIMjvZ2i8KkSNziz0hX5QbySEZcZk+6ZWlG2WI7TNwCHPWAwdpbCcREnrcl9aG4U5P2Wv4K3YKOnvH71NlicROGvDVeRaJ8DHi3J4UJKjmKAF71qMVNk="
-  - provider: atlas
-    app: alvaro/nested-dev2
-    include: build/nested 
-    on:
-      tags: false
-      branch: master
-    token:
-      secure: "jjFH42u++5x+ttFHYpew+tdz4kaReYTH9ThCcSDj6kVOUbRdwx0GDqsslzrvJ8g8dPoSHvBN0iD7/fXcpxol1h2Vce8Kz2g3ub/y+KVRHmqldhUjwdG8BNBrrASttKXLxqhUpcXQrk0PouuhvfsEWNMjG7wt0owr5RpTKVrwIzZxzO3/jGH/knLve3xCRppUbxWwUhdweNrPwbQtavh926SXaGErN3hRkqOeumQfJHaua8eI6U+wFDzvSeTXNQdWmFnhyiGgdgSTXRQYh7VpVDFKogkoY+HMUwEoLgnRTXNz/jlBEGonPtSEGW9Wgf2UMCCAhPR03JGFVQ9iBUdbmTqnJ2a1dw+Yw0VZn5MRPNhko4Oh1qmLugb0utCDx2gBTdQxleqEjzcaDET0EXomEu0M4GFUem2wv/vUDXEiTnUdTQno0JQUgATzFzCODVBH3hn5o33Q2xAkBpsbuBRI++V/DH0zEK5V+Mda0Cyquay1QTZ73oMOFrbuxRdsjO80RPPAJNjFMMZp/jQWO9x9n2Q0kB1RKYycNsSxDMdaSr1+PWXAWTqPo8mSIMjvZ2i8KkSNziz0hX5QbySEZcZk+6ZWlG2WI7TNwCHPWAwdpbCcREnrcl9aG4U5P2Wv4K3YKOnvH71NlicROGvDVeRaJ8DHi3J4UJKjmKAF71qMVNk="
+
+after_deploy:
+  - ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod build/nested
