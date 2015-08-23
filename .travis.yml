@@ -79,7 +79,6 @@ deploy:
     file_glob: true
     file: "build/nested-*"
     skip_cleanup: true
-    release-number: ${tag_name}
     prerelease: true
     on:
       tags: false
