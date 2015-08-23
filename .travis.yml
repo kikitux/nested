@@ -31,13 +31,6 @@ script:
     && time build/*t -s
     ;
 
-branches:
-  only:
-    - master
-    - /^f-.*$/
-    - /^v.*$/
-    - /v\d+\.\d+[a-z]/
-
 env:
   - LANG="en_US.UTF-8"
 
@@ -62,4 +55,4 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
-      all_branches: true
+      branch: master
