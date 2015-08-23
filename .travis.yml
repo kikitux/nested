@@ -10,7 +10,6 @@ addons:
     packages:
     - cmake
     - g++-4.8
-    - virt-what
     - strace
 
 sudo: true
@@ -35,7 +34,6 @@ before_script:
       ;
     fi
   - env | grep ^TRAVIS
-  - sudo virt-what
 
 script:
   - if [ "${TRAVIS_TAG}" ]; then
