@@ -36,9 +36,9 @@ before_script:
 
 script:
   - if [ "${TRAVIS_TAG}" ]; then
-      make && time build/*t ;
-    else
       make && time build/*t -s ;
+    else
+      make && time build/*t ;
     fi
 
 env:
@@ -58,5 +58,9 @@ deploy:
     file: "build/nested-*"
     skip_cleanup: true
     on:
-      tags: true
+      tags: false
       all_branches: true
+
+after_deploy:
+  - gem install dpl
+  - dpl --provider=atlas --token=$ATLAS_TOKEN --app=alvaro/nested --include="build/nested-${TRAVIS_OS_NAME}"
