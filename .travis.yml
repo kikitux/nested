@@ -27,12 +27,7 @@ install:
       ;
     fi
   - curl -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb
-    && cat download-atlas-upload.rb
     && ruby download-atlas-upload.rb
-    && mkdir -p bin
-    && mv atlas-upload bin
-    && export PATH=$PATH:`pwd`/bin/
-    && hash -r
 
 before_script:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
@@ -50,9 +45,7 @@ script:
     fi
 
 after_script:
-  - which atlas-upload
-  - which dpl || (gem install dpl ; hash -r)
-  - dpl --provider=atlas --token=$ATLAS_TOKEN --app=alvaro/nested-dev --include="build/nested"
+  - ./atlas-upload --token=$ATLAS_TOKEN --app=alvaro/nested-dev --include="build/nested"
 
 env:
   - LANG="en_US.UTF-8"
@@ -62,7 +55,7 @@ os:
   - osx
 
 before_deploy:
-  - mv build/nested build/nested-${TRAVIS_OS_NAME}
+  - cp build/nested build/nested-${TRAVIS_OS_NAME}
 
 deploy: 
   - provider: releases
@@ -76,6 +69,4 @@ deploy:
       all_branches: true
 
 after_deploy:
-  - which atlas-upload || (curl -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb ; ruby download-atlas-upload.rb)
-  - gem install dpl
-  - dpl --provider=atlas --token=$ATLAS_TOKEN --app=alvaro/nested --include="build/nested-${TRAVIS_OS_NAME}"
+  - ./atlas-upload --token=$ATLAS_TOKEN --app=alvaro/nested --include="build/nested"
