@@ -11,7 +11,7 @@ addons:
     - cmake
     - g++-4.8
 
-sudo: false
+sudo: true
 
 compiler:
   - gcc
@@ -42,21 +42,15 @@ script:
     fi
 
 after_script:
-  - rvm use $RVM --install --binary --fuzzy
-  - gem update --system
-  - gem --version
-  - ruby -v
-  - gem install dpl
-  - gem list dpl
-  - hash -r
+  - which dpl || (gem install dpl ; hash -r)
   - dpl --provider=atlas --token=$ATLAS_TOKEN --app=alvaro/nested-dev --include="build/nested"
 
 env:
   - LANG="en_US.UTF-8"
-  - RVM="2.2.2"
 
 os:
   - linux
+  - osx
 
 before_deploy:
   - mv build/nested build/nested-${TRAVIS_OS_NAME}
