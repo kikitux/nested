@@ -10,7 +10,6 @@ addons:
     packages:
     - cmake
     - g++-4.8
-    - golang
 
 sudo: false
 
@@ -45,7 +44,7 @@ script:
     fi
 
 after_script:
-  - ./atlas-upload --token=$ATLAS_TOKEN --app=alvaro/nested-dev --include="build/nested"
+  - ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev build/nested-dev
 
 env:
   - LANG="en_US.UTF-8"
@@ -69,4 +68,4 @@ deploy:
       all_branches: true
 
 after_deploy:
-  - ./atlas-upload --token=$ATLAS_TOKEN --app=alvaro/nested --include="build/nested"
+  - ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested build/nested-dev
