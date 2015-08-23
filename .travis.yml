@@ -44,7 +44,7 @@ script:
     fi
 
 after_script:
-  - ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev build/nested
+  - ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev build/nested*
 
 env:
   - LANG="en_US.UTF-8"
