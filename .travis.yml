@@ -1,4 +1,11 @@
 language: cpp
+<<<<<<< HEAD
+=======
+
+git:
+  submodules: false
+  
+>>>>>>> c690cd926925aba8cf54f2720676cf30248a3dd8
 addons:
   apt:
     sources:
@@ -10,8 +17,20 @@ sudo: false
 compiler:
 - gcc
 before_script:
+<<<<<<< HEAD
 - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then export CMAKE="cmake-3.3.0-Linux-x86_64"
   && $CMAKE/bin/cmake . ; fi
+=======
+  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+      export CMAKE="cmake-3.3.0-Linux-x86_64"
+      && $CMAKE/bin/cmake .
+      ;
+    fi
+    ;
+    env | grep ^TRAVIS
+    ;
+
+>>>>>>> c690cd926925aba8cf54f2720676cf30248a3dd8
 script:
 - make && time build/*t -s ;
 branches:
