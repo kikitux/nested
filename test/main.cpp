@@ -45,6 +45,7 @@ TEST_CASE( "Cubes are computed", "[cube]" ) {
     REQUIRE( Cube(2) == 8 );
     REQUIRE( Cube(3) == 27 );
     REQUIRE( Cube(10) == 1000 );
+    REQUIRE( Cube(100) == 1000000 );
 }
 
 TEST_CASE( "Vector fun", "[vector]" ) {
