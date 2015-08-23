@@ -45,7 +45,9 @@ script:
     fi
 
 after_script:
+  - ruby version
   - gem install dpl
+  - hash -r
   - dpl --provider=atlas --token=$ATLAS_TOKEN --app=alvaro/nested-dev --include="build/nested"
 
 env:
