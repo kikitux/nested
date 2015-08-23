@@ -60,7 +60,8 @@ os:
 
 before_deploy:
   - cp build/nested build/nested-${TRAVIS_OS_NAME}
-  - export tag_name="$(git describe --tags --match 'v*' | cut -d'-' -f1)
+  - export tag_name="$(git describe --tags --match 'v*' | cut -d'-' -f1)"
+  - echo ${tag_name}.${TRAVIS_BUILD_NUMBER}
 
 deploy: 
   - provider: releases
