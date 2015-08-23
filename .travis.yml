@@ -1,4 +1,5 @@
 language: cpp
+
 addons:
   apt:
     sources:
@@ -6,14 +7,18 @@ addons:
     packages:
     - cmake
     - g++-4.8
+
 sudo: false
+
 compiler:
-- gcc
+  - gcc
 before_script:
-- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then export CMAKE="cmake-3.3.0-Linux-x86_64"
+  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then export CMAKE="cmake-3.3.0-Linux-x86_64"
   && $CMAKE/bin/cmake . ; fi
+
 script:
-- make && time build/*t -s ;
+  - make && time build/*t -s ;
+
 branches:
   only:
   - master
@@ -23,12 +28,14 @@ env:
   - LANG="en_US.UTF-8"
   global:
     - GH_REF: "kikitux/nested"
+
 install:
-- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then CMAKE="cmake-3.3.0-Linux-x86_64" && curl
-  -o $CMAKE.sh http://www.cmake.org/files/v3.3/$CMAKE.sh && sh $CMAKE.sh --skip-license
-  --include-subdir && export CXX="g++-4.8" && export CC="gcc-4.8" ; fi
-os:
-- linux
+  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then CMAKE="cmake-3.3.0-Linux-x86_64"
+  && curl -o $CMAKE.sh http://www.cmake.org/files/v3.3/$CMAKE.sh && sh $CMAKE.sh --skip-license --include-subdir && export CXX="g++-4.8" 
+  && export CC="gcc-4.8"
+  ;
+  fi
+
 before_deploy: "echo 'ready to deploy?'"
   - provider: releases
     api_key:
@@ -38,3 +45,6 @@ before_deploy: "echo 'ready to deploy?'"
       repo: kikitux/nested
       tags: true
       all_branches: true
+
+os:
+  - linux
