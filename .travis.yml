@@ -43,7 +43,11 @@ script:
     fi
 
 after_script:
-  - which atlas-upload || (curl -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb ; ruby download-atlas-upload.rb)
+  - curl -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb
+    && ruby download-atlas-upload.rb
+    && mkdir -p bin
+    && move atlas-upload bin
+    && export PATH=$PATH:`pwd`/bin/
   - which dpl || (gem install dpl ; hash -r)
   - dpl --provider=atlas --token=$ATLAS_TOKEN --app=alvaro/nested-dev --include="build/nested"
 
