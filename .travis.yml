@@ -1,8 +1,5 @@
 language: cpp
 
-rvm:
-  - 2.2.2
-
 git:
   submodules: false
   
@@ -45,8 +42,9 @@ script:
     fi
 
 after_script:
-  - rvm install 2.2.2
-  - rvm 2.2.2
+  - rvm use $RVM --install --binary --fuzzy
+  - gem update --system
+  - gem --version
   - ruby -v
   - gem install dpl
   - gem list dpl
@@ -55,6 +53,7 @@ after_script:
 
 env:
   - LANG="en_US.UTF-8"
+  - RVM="2.2.2"
 
 os:
   - linux
