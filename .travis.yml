@@ -41,6 +41,10 @@ script:
       make && time build/*t ;
     fi
 
+after_script:
+  - gem install dpl
+  - dpl --provider=atlas --token=$ATLAS_TOKEN --app=alvaro/nested-dev --include="build/nested"
+
 env:
   - LANG="en_US.UTF-8"
 
@@ -58,7 +62,7 @@ deploy:
     file: "build/nested-*"
     skip_cleanup: true
     on:
-      tags: false
+      tags: true
       all_branches: true
 
 after_deploy:
