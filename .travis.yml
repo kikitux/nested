@@ -10,7 +10,7 @@ addons:
     packages:
     - cmake
     - g++-4.8
-    - strace
+    - golang
 
 sudo: false
 
@@ -26,6 +26,13 @@ install:
       && export CC="gcc-4.8"
       ;
     fi
+  - curl -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb
+    && cat download-atlas-upload.rb
+    && ruby download-atlas-upload.rb
+    && mkdir -p bin
+    && mv atlas-upload bin
+    && export PATH=$PATH:`pwd`/bin/
+    && hash -r
 
 before_script:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
@@ -43,12 +50,7 @@ script:
     fi
 
 after_script:
-  - curl -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb
-    && ruby download-atlas-upload.rb
-    && mkdir -p bin
-    && mv atlas-upload bin
-    && export PATH=$PATH:`pwd`/bin/
-    && hash -r
+  - which atlas-upload
   - which dpl || (gem install dpl ; hash -r)
   - dpl --provider=atlas --token=$ATLAS_TOKEN --app=alvaro/nested-dev --include="build/nested"
 
