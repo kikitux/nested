@@ -25,9 +25,6 @@ install:
       && export CC="gcc-4.8"
       ;
     fi
-  - ruby -v
-  - curl -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb
-  - ruby download-atlas-upload.rb
 
 before_script:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
@@ -45,14 +42,18 @@ script:
     fi
 
 after_script:
+  - export tag_name="$(git describe --tags --match 'v*' | cut -d'-' -f1)
+  - echo ${tag_name}.${TRAVIS_BUILD_NUMBER}
+  - ruby -v
+  - curl -L -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb
+  - ruby download-atlas-upload.rb
+  - ls -al
   - if [ "${TRAVIS_TAG}" ]; then
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod build/nested ;
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev build/nested ;
     else
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev build/nested ;
     fi
-  - export tag_name="$(git describe --tags --match 'v*' | cut -d'-' -f1)
-  - echo ${tag_name}.${TRAVIS_BUILD_NUMBER}
 
 env:
   - LANG="en_US.UTF-8"
