@@ -25,8 +25,9 @@ install:
       && export CC="gcc-4.8"
       ;
     fi
+  - ruby -v
   - curl -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb
-    && ruby download-atlas-upload.rb
+  - ruby download-atlas-upload.rb
 
 before_script:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
