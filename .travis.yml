@@ -46,6 +46,7 @@ script:
 after_script:
   - if [ "${TRAVIS_TAG}" ]; then
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod build/nested ;
+      ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev build/nested ;
     else
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev build/nested ;
     fi
