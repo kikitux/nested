@@ -44,10 +44,8 @@ script:
 after_script:
   - export tag_name="$(git describe --tags --match 'v*' | cut -d'-' -f1)
   - echo ${tag_name}.${TRAVIS_BUILD_NUMBER}
-  - ruby -v
   - curl -L -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb
   - ruby download-atlas-upload.rb
-  - ls -al
   - if [ "${TRAVIS_TAG}" ]; then
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod build/nested ;
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev build/nested ;
