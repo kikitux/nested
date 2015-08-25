@@ -9,6 +9,8 @@ addons:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
+    - node
+    - npm
 
 sudo: false
 
@@ -22,6 +24,9 @@ install:
       && sh $CMAKE.sh --skip-license --include-subdir
       ;
     fi
+  - node -v
+  - npm -v
+  - npm install -g node-gyp
 
 before_script:
   - env | grep ^TRAVIS
