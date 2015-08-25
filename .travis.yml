@@ -1,5 +1,8 @@
 language: cpp
 
+node_js:
+  - "0.12"
+
 git:
   submodules: false
   
@@ -9,8 +12,6 @@ addons:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
-    - node
-    - npm
 
 sudo: false
 
