@@ -3,7 +3,7 @@
 
 using namespace v8;
 
-void Factorial(const FunctionCallbackInfo<Value>& args) {
+void Fibonacci(const FunctionCallbackInfo<Value>& args) {
   Isolate* isolate = Isolate::GetCurrent();
   HandleScope scope(isolate);
   if (args.Length() != 1) {
@@ -16,13 +16,13 @@ void Factorial(const FunctionCallbackInfo<Value>& args) {
         String::NewFromUtf8(isolate, "Wrong arguments")));
     return;
   }
-  double value = Factorial(args[0]->NumberValue());
+  double value = intfibonacci(args[0]->NumberValue());
   Local<Number> num = Number::New(isolate, value);
   args.GetReturnValue().Set(num);
 }
 
 void Init(Handle<Object> exports) {
-  NODE_SET_METHOD(exports, "fact", Factorial);
+  NODE_SET_METHOD(exports, "fibo", Fibonacci);
 }
 
-NODE_MODULE(factorial, Init)
+NODE_MODULE(fibonacci, Init)
