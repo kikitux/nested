@@ -24,7 +24,9 @@ install:
     fi
   - nvm install 0.12
   - npm install -g node-gyp
-  - npm install -g restify
+  - pushd nodejs;
+    npm install restify;
+    node-gyp rebuild;
 
 before_script:
   - env | grep ^TRAVIS
