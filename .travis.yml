@@ -1,7 +1,4 @@
-language: node_js
-
-node_js:
-  - "0.12"
+language: cpp
 
 git:
   submodules: false
@@ -25,8 +22,10 @@ install:
       && sh $CMAKE.sh --skip-license --include-subdir
       ;
     fi
-  - node -v
-  - npm -v
+  - nvm install 0.12
+  - node --version
+  - npm --version
+  - nvm --version
   - npm install -g node-gyp
 
 before_script:
