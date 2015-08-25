@@ -22,10 +22,10 @@ install:
       && sh $CMAKE.sh --skip-license --include-subdir
       ;
     fi
-  - nvm install 0.12
+  - nvm install 0.10
+  - nvm --version
   - node --version
   - npm --version
-  - nvm --version
   - npm install -g node-gyp
 
 before_script:
