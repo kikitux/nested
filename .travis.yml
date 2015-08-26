@@ -17,7 +17,7 @@ install:
       CMAKE="cmake-3.3.0-Linux-x86_64"
       && curl -L -o $CMAKE.sh http://www.cmake.org/files/v3.3/$CMAKE.sh
       && sh $CMAKE.sh --skip-license --include-subdir
-      && update-alternatives --remove-all gcc
+      && update-alternatives --remove-all gcc 2>&1
       && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 40 --slave /usr/bin/g++ g++ /usr/bin/g++-4.8
       ;
     fi
