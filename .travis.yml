@@ -50,7 +50,7 @@ os:
 
 before_deploy:
   - cp build/nested build/nested-${TRAVIS_OS_NAME}
-  - zip -r build/nested-nodejs.zip nodejs/
+  - zip -j -r build/nested-nodejs.zip nodejs/
 
 deploy: 
   - provider: releases
