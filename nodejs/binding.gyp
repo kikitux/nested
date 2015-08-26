@@ -3,7 +3,7 @@
     {
         "target_name": "factorial",
         "sources": [ "factorial.cpp" ],
-        "cflags" : [ "-std=c++11", "-stdlib=libc++" ],
+        "cflags" : [ "-std=c++11" ],
         "conditions": [
           [ 'OS!="win"', {
             "cflags+": [ "-std=c++11" ],
@@ -22,7 +22,7 @@
     {
         "target_name": "fibonacci",
         "sources": [ "fibonacci.cpp" ],
-        "cflags" : [ "-std=c++11", "-stdlib=libc++" ],
+        "cflags" : [ "-std=c++11" ],
         "conditions": [
           [ 'OS!="win"', {
             "cflags+": [ "-std=c++11" ],
