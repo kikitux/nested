@@ -12,6 +12,5 @@ if (NOT EXISTS "${MY_DOWNLOAD_PATH}")
     message(FATAL_ERROR "DOWNLOAD catch.hpp from " ${MY_URL})
 endif()
 
-add_executable(nested ${SOURCE_FILES} main.hpp)
-add_executable(nestedt test/main.cpp test/catch.hpp main.hpp)
-
+add_executable(nested ${SOURCE_FILES} nodejs/main.hpp)
+add_executable(nestedt test/main.cpp test/catch.hpp nodejs/main.hpp)
