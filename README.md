@@ -10,18 +10,28 @@ travis job for this project can be found at: [https://travis-ci.org/kikitux/nest
 
 ```text
 .
-|-- .travis.yml		// travis-ci conf file
-|-- CMakeLists.txt
-|-- main.cpp		// main c++ code
-|-- main.hpp		// main header. Functions are here
-`-- test
-    |-- catch.hpp	// catch header file
-    `-- main.cpp	// test are here. Include ../main.hpp and catch.hpp
+├── .gitignore
+├── .travis.yml
+├── CMakeLists.txt
+├── README.md
+├── main.cpp		// main c++ code (interactive app to play with code)
+├── nodejs
+│   ├── README.md	// README with instructions for nodejs app
+│   ├── app.js		// nodejs app that use our c++ code
+│   ├── binding.gyp	// file required to build nodejs addon
+│   ├── factorial.cpp	// nodejs addon with factorial funtion
+│   ├── fibonacci.cpp	// nodejs addon with fibonacci funtion
+│   ├── main.hpp	// main c++ header (all the funtions are here)
+│   └── package.json	// nodejs install instructions
+└── test
+    ├── app.js		// test for nodejs code
+    ├── catch.hpp	// catch c++ test suite
+    └── main.cpp	// test for c++ code
 ```
 
 ### How this works?
 
-We use CMake generate 2 binaries, `<code>` and `<codet>`.
+We use CMake generate 2 binaries, `build/<code>` and `build/<codet>`.
 
 `<codet>` is the one that includes the tests, and executed on development or CI/CD (ie Travis-ci)
 
@@ -35,7 +45,7 @@ Travis-ci:
 
 
 
-### main.hpp
+### nodejs/main.hpp
 
 Project header define functions, ie:
 
