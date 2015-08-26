@@ -6,7 +6,7 @@
 #include <iostream>
 #include <vector>
 #include "catch.hpp"
-#include "../main.hpp"
+#include "../nodejs/main.hpp"
 
 TEST_CASE( "Factorials are computed", "[factorial]" ) {
     REQUIRE( Factorial(0) == 1 );

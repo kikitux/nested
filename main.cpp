@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "main.hpp"
+#include "nodejs/main.hpp"
 
 using namespace std;
 

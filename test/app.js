@@ -1,7 +1,7 @@
 var assert = require('assert');
 
-var factorial = require('../build/Release/factorial');
-var fibonacci = require('../build/Release/fibonacci');
+var factorial = require('../nodejs/build/Release/factorial');
+var fibonacci = require('../nodejs/build/Release/fibonacci');
 
 assert(2+2==4, '2+2=4');
 

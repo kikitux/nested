@@ -39,6 +39,7 @@ script:
     fi
   - pushd nodejs;
     npm install . && node test/app.js
+  - git clean -fdx
 
 env:
   - LANG="en_US.UTF-8" CMAKE="cmake-3.3.0-Linux-x86_64"
@@ -66,8 +67,8 @@ after_script:
   - curl -L -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb
   - ruby download-atlas-upload.rb
   - if [ "${TRAVIS_TAG}" ]; then
-      ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod build/nested ;
-      ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev build/nested ;
+      ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod nodejs/ ;
+      ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev nodejs/ ;
     else
-      ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev build/nested ;
+      ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev nodejs/ ;
     fi

@@ -1,5 +1,5 @@
 #include <node.h>
-#include "../main.hpp"
+#include "main.hpp"
 
 using namespace v8;
 
