@@ -31,12 +31,12 @@ script:
       export CXX="g++-4.8" ;
       export CC="gcc-4.8" ;
     fi
-   - $CMAKE/bin/cmake . 
-   - if [ "${TRAVIS_TAG}" ]; then
-       make && time build/*t -s ;
-     else
-       make && time build/*t ;
-     fi
+  - $CMAKE/bin/cmake . 
+  - if [ "${TRAVIS_TAG}" ]; then
+      make && time build/*t -s ;
+    else
+      make && time build/*t ;
+    fi
 
 after_script:
   - pushd nodejs;
