@@ -9,13 +9,13 @@ addons:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
+    - gcc-4.8
 
 sudo: false
 
 install:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-      CMAKE="cmake-3.3.0-Linux-x86_64"
-      && curl -L -o $CMAKE.sh http://www.cmake.org/files/v3.3/$CMAKE.sh
+      curl -L -o $CMAKE.sh http://www.cmake.org/files/v3.3/$CMAKE.sh
       && sh $CMAKE.sh --skip-license --include-subdir
       && update-alternatives --remove-all gcc 2>&1
       && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 40 --slave /usr/bin/g++ g++ /usr/bin/g++-4.8
@@ -30,8 +30,7 @@ install:
 before_script:
   - env | grep ^TRAVIS
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-      export CMAKE="cmake-3.3.0-Linux-x86_64"
-      && $CMAKE/bin/cmake .
+      $CMAKE/bin/cmake .
       ;
     fi
 
@@ -43,7 +42,7 @@ script:
     fi
 
 env:
-  - LANG="en_US.UTF-8" CXX="g++-4.8" CC="gcc-4.8"
+  - LANG="en_US.UTF-8" CXX="g++-4.8" CC="gcc-4.8" CMAKE="cmake-3.3.0-Linux-x86_64"
 
 os:
   - linux
