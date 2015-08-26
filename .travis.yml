@@ -38,7 +38,7 @@ script:
       make && time build/*t ;
     fi
   - pushd nodejs;
-    npm install . && node test/app.js
+    npm install . && node ../test/app.js
   - git clean -fdx
 
 env:
@@ -49,6 +49,7 @@ os:
 
 before_deploy:
   - cp build/nested build/nested-${TRAVIS_OS_NAME}
+  - zip -r build/nested-nodejs.zip nodejs/
 
 deploy: 
   - provider: releases
@@ -56,6 +57,7 @@ deploy:
       secure: "ZUmRYxVIU3d9SsRrMx+c+28fAuXc+ianMp8WRKI/WbFkqZqUji5HTlLZ1dAbcH0xmukE7OVUO9vKCM1ZXAhYeTCAfVZ1y43PJatMYaVulVJmZb0+KeWKUyd3WXpSuz7dksZtaocszYkDGOlxwyOF0bIXjKfuVwf1R8GKUOuJ66Q9u10rj0TT+ZNQZHjclGSie+BDx6v/iwOXrYexgjBEnk6cBtZsVFXhiv0qCLzaxGCFMjT5R56qUToCTJgS7maNK8cK2f9pUUDa8ZE3+iE7LQiABsvgNaNSyRlRUrU/ybU82bqhr2pheFInFF7qZ9IKfzGwM7aS2dL2MJVkZN6/+qn0+Icfq2AgHJjsMR2OfbOgNUH/CHe0Zjy7/zbW31x34u3r8UE4Sizxwd+9wFGchy1i6aqqChNcYRRO5fimwzN+dbsYG6Nbl+MQHjkB73/eh/JR97zgSClcE6ej2TQoZwfOKdJR7xv518QMQBFPeg8SLfXVpe6/f3kXdpoetmmnL9mEB9UcUQgKY4lrO9f44uO6H70SZ1jjF5zupwdgo7FgUhobroSPj+iyHRYn1h+rLwxWmfXi5yfNRUiBT9yWuOYvAVuAG6UI+tFPoZTAnQceA+1hxyRum6bDeBF1UD9ZtPBTWqm4ZfvOAQsnuoCj9vUsGA7Zhv5RG1J8SaJhwy4="
     file_glob: true
     file: "build/nested-*"
+    file: "build/nested-nodejs.zip"
     skip_cleanup: true
     on:
       tags: true
