@@ -22,10 +22,6 @@ install:
     fi
   - nvm install 0.12
   - npm install -g node-gyp
-  - pushd nodejs;
-    npm install restify;
-    node-gyp rebuild;
-    popd ;
 
 before_script:
   - env | grep ^TRAVIS
@@ -34,14 +30,20 @@ script:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
       export CXX="g++-4.8" ;
       export CC="gcc-4.8" ;
-      $CMAKE/bin/cmake . ;
-      if [ "${TRAVIS_TAG}" ]; then
-        make && time build/*t -s ;
-      else
-        make && time build/*t ;
-      fi
     ;
     fi
+   - $CMAKE/bin/cmake . ;
+   - if [ "${TRAVIS_TAG}" ]; then
+       make && time build/*t -s ;
+     else
+       make && time build/*t ;
+     fi
+
+after_script:
+  - pushd nodejs;
+    npm install restify;
+    node-gyp rebuild;
+    popd ;
 
 env:
   - LANG="en_US.UTF-8" CMAKE="cmake-3.3.0-Linux-x86_64"
