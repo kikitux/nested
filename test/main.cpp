@@ -85,9 +85,21 @@ TEST_CASE( "Vector fun", "[vector]" ) {
 }
 
 TEST_CASE( "Fibonnaci fun", "[fibonnaci]" ) {
+
+    constexpr long fibo10 = fibonacci<10>();
+    constexpr long fibo20 = fibonacci<20>();
+    constexpr long fibo30 = fibonacci<30>();
     constexpr long fibo40 = fibonacci<40>();
     constexpr long fibo50 = fibonacci<50>();
     constexpr long fibo60 = fibonacci<60>();
+
+    REQUIRE(intfibonacci(10)==fibo10);
+    REQUIRE(intfibonacci(20)==fibo20);
+    REQUIRE(intfibonacci(30)==fibo30);
+
+    REQUIRE(intfibonacci2(10)==fibo10);
+    REQUIRE(intfibonacci2(20)==fibo20);
+    REQUIRE(intfibonacci2(30)==fibo30);
 
     REQUIRE(fibo40==102334155);
     REQUIRE(fibo50==12586269025);

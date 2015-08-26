@@ -2,3 +2,4 @@
 build/
 .ruby-version
 atlas-upload
+nodejs/node_modules/

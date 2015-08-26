@@ -9,31 +9,29 @@ addons:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
+    - gcc-4.8
 
 sudo: false
 
-compiler:
-  - gcc
-
 install:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-      CMAKE="cmake-3.3.0-Linux-x86_64"
-      && curl -L -o $CMAKE.sh http://www.cmake.org/files/v3.3/$CMAKE.sh
-      && sh $CMAKE.sh --skip-license --include-subdir
-      ;
+      export CXX="g++-4.8" ;
+      export CC="gcc-4.8" ;
+      curl -L -o $CMAKE.sh http://www.cmake.org/files/v3.3/$CMAKE.sh ;
+      sh $CMAKE.sh --skip-license --include-subdir ;
     fi
+  - nvm install 0.12
+  - npm install -g node-gyp
 
 before_script:
   - env | grep ^TRAVIS
-  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-      export CMAKE="cmake-3.3.0-Linux-x86_64"
-      && export CXX="g++-4.8"
-      && export CC="gcc-4.8"
-      && $CMAKE/bin/cmake .
-      ;
-    fi
 
 script:
+  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+      export CXX="g++-4.8" ;
+      export CC="gcc-4.8" ;
+    fi
+  - $CMAKE/bin/cmake . 
   - if [ "${TRAVIS_TAG}" ]; then
       make && time build/*t -s ;
     else
@@ -41,7 +39,7 @@ script:
     fi
 
 env:
-  - LANG="en_US.UTF-8"
+  - LANG="en_US.UTF-8" CMAKE="cmake-3.3.0-Linux-x86_64"
 
 os:
   - linux
@@ -63,6 +61,10 @@ deploy:
 after_script:
   - export tag_name="$(git describe --tags --match 'v*' | cut -d'-' -f1)"
   - echo ${tag_name}.${TRAVIS_BUILD_NUMBER}
+  - pushd nodejs;
+    npm install restify;
+    node-gyp rebuild;
+    popd
   - curl -L -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb
   - ruby download-atlas-upload.rb
   - if [ "${TRAVIS_TAG}" ]; then
