@@ -22,6 +22,8 @@ install:
   - nvm install 0.12.7
   - npm install -g npm@latest
   - npm install -g node-gyp
+  - curl -L https://raw.githubusercontent.com/kikitux/download-hashicorp-tools/master/download-atlas-upload.rb | ruby
+  - ls -al
 
 script:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
@@ -64,8 +66,6 @@ deploy:
 after_script:
   - export tag_name="$(git describe --tags --match 'v*' | cut -d'-' -f1)"
   - echo ${tag_name}.${TRAVIS_BUILD_NUMBER}
-  - curl -L https://raw.githubusercontent.com/kikitux/download-hashicorp-tools/master/download-atlas-upload.rb | ruby
-  - ls -al
   - if [ "${TRAVIS_PULL_REQUEST}" == "false" ] && [ "${TRAVIS_TAG}" ]; then
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod nodejs/ ;
     elif [ "${TRAVIS_BRANCH}" == "master" ] && [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
