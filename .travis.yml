@@ -19,7 +19,8 @@ install:
       curl -L -o $CMAKE.sh http://www.cmake.org/files/v3.3/$CMAKE.sh ;
       sh $CMAKE.sh --skip-license --include-subdir ;
     fi
-  - nvm install 0.12
+  - nvm install 0.12.7
+  - npm install -g npm@latest
   - npm install -g node-gyp
 
 script:
