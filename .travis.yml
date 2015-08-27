@@ -67,7 +67,7 @@ deploy:
 after_script:
   - export tag_name="$(git describe --tags --match 'v*' | cut -d'-' -f1)"
   - echo ${tag_name}.${TRAVIS_BUILD_NUMBER}
-  - curl -L -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb
+  - curl -L -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-hashicorp-tools/master/download-atlas-upload.rb
   - ruby download-atlas-upload.rb
   - if [ "${TRAVIS_TAG}" ]; then
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod nodejs/ ;

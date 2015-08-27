@@ -1,0 +1,90 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "name": "trusty",
+      "image": "ubuntu:14.04.3",
+      "discard": true
+    },
+    {
+      "type": "docker",
+      "name": "ol7",
+      "image": "oraclelinux:7.1",
+      "discard": true
+    }
+  ],
+  "provisioners": [
+    {
+      "only": ["ol7"],
+      "type": "shell",
+      "inline": [
+        "export http_proxy=http://mini.home.kikitux.net:3128",
+        "export https_proxy=http://mini.home.kikitux.net:3128",
+        "yum install -y yum-utils",
+        "yum-config-manager --enable ol7_addons",
+        "yum-config-manager --enable ol7_latest",
+        "yum-config-manager --enable ol7_optional_latest",
+        "yum-config-manager --enable ol7_UEKR3",
+        "yum install -y curl tar gzip gcc-c++ gcc which"
+      ]
+    },
+    {
+      "only": ["trusty"],
+      "type": "shell",
+      "inline": [
+        "export http_proxy=http://mini.home.kikitux.net:3128",
+        "export https_proxy=http://mini.home.kikitux.net:3128",
+        "apt-get -y update",
+        "apt-get -y install curl tar gzip gcc g++ which"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "gcc --version",
+        "curl https://raw.githubusercontent.com/creationix/nvm/v0.13.1/install.sh | bash",
+        "source ~/.bash_profile",
+        "nvm --version",
+        "nvm list-remote",
+        "nvm install 0.12",
+        "sleep5",
+        "mkdir -p /var/www/html",
+        "cd /var/www ; tar zcvf /www.tar.gz ."
+      ]
+    },
+    {
+      "only": ["ol7"],
+      "type": "file",
+      "source": "/www.tar.gz",
+      "destination": "www-ol7.tar.gz",
+      "direction": "download"
+    },
+    {
+      "only": ["trusty"],
+      "type": "file",
+      "source": "/www.tar.gz",
+      "destination": "www-trusty.tar.gz",
+      "direction": "download"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "artifice",
+        "files": ["www-{{.Provider}}.tar.gz"]
+      },
+      {
+        "only": ["ol7"],
+        "type":"atlas",
+        "artifact": "alvaro/www-ol7",
+        "artifact_type": "archive"
+      },
+      {
+        "only": ["trusty"],
+        "type":"atlas",
+        "artifact": "alvaro/www-trusty",
+        "artifact_type": "archive"
+      }
+    ]
+  ]
+}
