@@ -14,17 +14,13 @@ addons:
 sudo: false
 
 install:
+  - env | grep ^TRAVIS
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-      export CXX="g++-4.8" ;
-      export CC="gcc-4.8" ;
       curl -L -o $CMAKE.sh http://www.cmake.org/files/v3.3/$CMAKE.sh ;
       sh $CMAKE.sh --skip-license --include-subdir ;
     fi
   - nvm install 0.12
   - npm install -g node-gyp
-
-before_script:
-  - env | grep ^TRAVIS
 
 script:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
@@ -69,9 +65,8 @@ after_script:
   - echo ${tag_name}.${TRAVIS_BUILD_NUMBER}
   - curl -L -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-hashicorp-tools/master/download-atlas-upload.rb
   - ruby download-atlas-upload.rb
-  - if [ "${TRAVIS_TAG}" ]; then
+  - if [ "${TRAVIS_PULL_REQUEST}" == "false" ] && [ "${TRAVIS_TAG}" ]; then
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod nodejs/ ;
-      ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev nodejs/ ;
-    else
+    elif [ "${TRAVIS_BRANCH}" == "master" ] && [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev nodejs/ ;
     fi
