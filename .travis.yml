@@ -69,9 +69,8 @@ after_script:
   - echo ${tag_name}.${TRAVIS_BUILD_NUMBER}
   - curl -L -o download-atlas-upload.rb https://raw.githubusercontent.com/kikitux/download-atlas-upload-cli/master/download-atlas-upload.rb
   - ruby download-atlas-upload.rb
-  - if [ "${TRAVIS_TAG}" ]; then
+  - if [ "${TRAVIS_BRANCH}" == "master" ] && [ ! "${TRAVIS_PULL_REQUEST}" ] && [ "${TRAVIS_TAG}" ]; then
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod nodejs/ ;
-      ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev nodejs/ ;
-    else
+    elif [ "${TRAVIS_BRANCH}" == "master" ] && [ ! "${TRAVIS_PULL_REQUEST}" ]; then
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev nodejs/ ;
     fi
