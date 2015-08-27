@@ -25,8 +25,8 @@
         "yum-config-manager --enable ol7_latest",
         "yum-config-manager --enable ol7_optional_latest",
         "yum-config-manager --enable ol7_UEKR3",
-        "yum install -y curl tar gzip gcc-c++ gcc which make",
-        "curl -o nodejs.rpm https://rpm.nodesource.com/pub_0.12/el/7/x86_64/nodejs-0.12.7-1nodesource.el7.centos.x86_64.rpm",
+        "yum install -y curl tar gzip gcc-c++ gcc make python",
+        "curl -L -o nodejs.rpm https://rpm.nodesource.com/pub_0.12/el/7/x86_64/nodejs-0.12.7-1nodesource.el7.centos.x86_64.rpm",
         "yum localinstall -y nodejs.rpm && rm nodejs.rpm"
       ]
     },
@@ -37,8 +37,8 @@
         "export http_proxy=http://mini.home.kikitux.net:3128",
         "export https_proxy=http://mini.home.kikitux.net:3128",
         "apt-get -y update",
-        "apt-get -y install curl tar gzip gcc g++ make",
-        "curl -o nodejs.deb https://deb.nodesource.com/node_0.12/pool/main/n/nodejs/nodejs_0.12.7-1nodesource1~trusty1_amd64.deb",
+        "apt-get -y install curl tar gzip gcc g++ make rlwrap python",
+        "curl -L -o nodejs.deb https://deb.nodesource.com/node_0.12/pool/main/n/nodejs/nodejs_0.12.7-1nodesource1~trusty1_amd64.deb",
         "dpkg -i nodejs.deb && rm nodejs.deb"
 
       ]

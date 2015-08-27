@@ -69,5 +69,5 @@ after_script:
   - if [ "${TRAVIS_PULL_REQUEST}" == "false" ] && [ "${TRAVIS_TAG}" ]; then
       ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-prod nodejs/ ;
     elif [ "${TRAVIS_BRANCH}" == "master" ] && [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
-      ./atlas-upload --token=$ATLAS_TOKEN alvaro/nested-dev nodejs/ ;
+      ./atlas-upload --token=$ATLAS_TOKEN --exclude=".packer-template" alvaro/nested-dev nodejs/ ;
     fi
