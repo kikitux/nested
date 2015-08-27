@@ -18,8 +18,6 @@
       "only": ["ol7"],
       "type": "shell",
       "inline": [
-        "export http_proxy=http://mini.home.kikitux.net:3128",
-        "export https_proxy=http://mini.home.kikitux.net:3128",
         "yum install -y yum-utils",
         "yum-config-manager --enable ol7_addons",
         "yum-config-manager --enable ol7_latest",
@@ -34,8 +32,6 @@
       "only": ["trusty"],
       "type": "shell",
       "inline": [
-        "export http_proxy=http://mini.home.kikitux.net:3128",
-        "export https_proxy=http://mini.home.kikitux.net:3128",
         "apt-get -y update",
         "apt-get -y install curl tar gzip gcc g++ make rlwrap python",
         "curl -L -o nodejs.deb https://deb.nodesource.com/node_0.12/pool/main/n/nodejs/nodejs_0.12.7-1nodesource1~trusty1_amd64.deb",
