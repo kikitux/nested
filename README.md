@@ -1,6 +1,14 @@
 ### nested
 
-This is a C++ sample project that use CMAKE and includes catch.hpp test
+This is a C++ sample project that use CMAKE and includes catch.hpp test.
+
+The main code is on `nodejs/main.hpp`, is where our code lives.
+
+This generate `build/nestedt` that include all the test to the funtions.
+
+If all good, then a `nodejs` module is generated, and more test happen `test/app.js`.
+
+If all good, the code is deployd to [atlas](http://atlas.hashicorp.com)
 
 ![https://travis-ci.org/kikitux/nested.svg](https://travis-ci.org/kikitux/nested.svg)
 
