@@ -22,10 +22,7 @@ install:
   - nvm install 0.12.7
   - npm install -g npm@latest
   - npm install -g node-gyp
-  - ruby -v
-  - curl -L https://raw.githubusercontent.com/kikitux/download-hashicorp-tools/master/download-atlas-upload.rb | ruby ; echo $?
-  - ls -al
-  - curl -L https://raw.githubusercontent.com/kikitux/download-hashicorp-tools/master/download-atlas-upload.rb | ruby -d
+  - curl -L https://raw.githubusercontent.com/kikitux/download-hashicorp-tools/master/download-atlas-upload.rb | ruby
 
 script:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
