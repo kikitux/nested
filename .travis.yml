@@ -70,3 +70,8 @@ after_script:
     elif [ "${TRAVIS_BRANCH}" == "master" ] && [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
       ./atlas-upload --token=$ATLAS_TOKEN --exclude=".packer-template" alvaro/nested-dev nodejs/ ;
     fi
+
+notifications:
+  slack:
+    secure: ggFSzZkzL5ftVorFB5kH7PrWGrIgOoK2VLhjGo/x7eHVDRUNlnnINgNXOE/SbA8eV7ufrCHqVNBpuZc8qMKw+OpYSunDS5vLk+Ltw65cIHp6Ql+Pc1kQ6d8X+3epA8FBmn92enQWv8D7sVzEjW80isWUMOGmnPQtYhEm4UR93lzLTNQ/DB/1Kk1vXMN+KXeXXLy0FZrXXHNEvFRtvrnnsqG9n0/dbLmuBMYvChm1+NZb8B9wThCKJcDz4C9Wb88nejjMez8/dsnslW+BuhHczc19fnyd0apzJKf2Puowt1//UKDu9oluZpCJ6lz6Gl5kif0GxKAeAJRb06eSmklS64z8ltQk5f6LwpY9AvW01//VXNLPi/voyDWdIo61zbBB/McipEyV3Ktd9h85OFBFClmylu/evr7VuMVmaLMu15WvNnkvZL+MBewELT5xm/JdS5Zj/JprqlGeqXDv9hP/yKAVcil1bcDh2MMmSs8GUqJvkCDN7zKJrmb52WwNoCkjbnjt/YuUtdKJ4r8/EKcpe+SCMN0SgMbnIqYAk8TBDhtTY7vuyI7YUTzCJovcaPVXaDoaJAQLUt1OJRkn6mwI0hbzarel2MUxPC8QiAgHXeYaSrUOQHlaosU5MMeIu6UTSggECSzyWRpFcMhVRIcCw5A/W4M/f1EAT0Xg/2agp+o=
+
