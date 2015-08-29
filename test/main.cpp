@@ -97,10 +97,6 @@ TEST_CASE( "Fibonnaci fun", "[fibonnaci]" ) {
     REQUIRE(intfibonacci(20)==fibo20);
     REQUIRE(intfibonacci(30)==fibo30);
 
-    REQUIRE(intfibonacci2(10)==fibo10);
-    REQUIRE(intfibonacci2(20)==fibo20);
-    REQUIRE(intfibonacci2(30)==fibo30);
-
     REQUIRE(fibo40==102334155);
     REQUIRE(fibo50==12586269025);
     REQUIRE(fibo60==1548008755920);

@@ -47,24 +47,13 @@ struct fibonacci : std::integral_constant<size_t, fibonacci<N-1>{} + fibonacci<N
 template<> struct fibonacci<1> : std::integral_constant<size_t,1> {};
 template<> struct fibonacci<0> : std::integral_constant<size_t,0> {};
 
-// two problems to solve
-// a reuse vector
-// b iterate 0,1,..,n
-
-unsigned long intfibonacci2(unsigned long N) {
-    if ( N == 0 ) return 0;
-    else if ( N == 1 ) return 1;
-    else
-        return (intfibonacci2(N-1) + intfibonacci2(N-2));
-}
-
 unsigned long intfibonacci(unsigned long n) {
-    static std::vector<unsigned long> values = {1,1};
-    if (n < values.size()-1 ) {
+    static std::vector<unsigned long> values = {0,1};
+    if (n < values.size() ) {
         return values[n];
     }
-    for (unsigned long loop = values.size(); loop < n+1 ; ++loop){
-        values.push_back(intfibonacci2(loop));
+    for (unsigned long loop = values.size(); loop-1 < n ; ++loop){
+        values.push_back(values[loop-2] + values[loop-1]);
     }
     return values[n];
 }
