@@ -39,6 +39,9 @@ long SumCubeVector(std::vector<long> vect){
     return sum_of_elems;
 }
 
+// we use this on the test, to calculate constexpr of fibonumbers, so we can be sure the new optimized  intfibonacci()
+// has no errors
+
 template<size_t N>
 struct fibonacci : std::integral_constant<size_t, fibonacci<N-1>{} + fibonacci<N-2>{}> {};
 template<> struct fibonacci<1> : std::integral_constant<size_t,1> {};
@@ -57,10 +60,10 @@ unsigned long intfibonacci2(unsigned long N) {
 
 unsigned long intfibonacci(unsigned long n) {
     static std::vector<unsigned long> values = {1,1};
-    if (n < values.size()-1 )
+    if (n < values.size()-1 ) {
         return values[n];
-    int start = values.size();
-    for (unsigned long loop = start; loop < n+1 ; ++loop){
+    }
+    for (unsigned long loop = values.size(); loop < n+1 ; ++loop){
         values.push_back(intfibonacci2(loop));
     }
     return values[n];
