@@ -16,7 +16,7 @@ void Fibonacci(const FunctionCallbackInfo<Value>& args) {
         String::NewFromUtf8(isolate, "Wrong arguments")));
     return;
   }
-  double value = intfibonacci(args[0]->NumberValue());
+  double value = fast_fib(args[0]->NumberValue());
   Local<Number> num = Number::New(isolate, value);
   args.GetReturnValue().Set(num);
 }
