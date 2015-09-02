@@ -7,7 +7,7 @@
       "type": "docker",
       "name": "trusty",
       "image": "ubuntu:14.04.3",
-      "discard": true
+       "commit": true
     },
     {
       "type": "docker",
