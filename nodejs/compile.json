@@ -1,4 +1,7 @@
 {
+  "variables": {
+    "app_slug": "{{ env `ATLAS_APPLICATION_SLUG` }}"
+  },
   "builders": [
     {
       "type": "docker",
