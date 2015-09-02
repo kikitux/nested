@@ -5,36 +5,49 @@
   "builders": [
     {
       "type": "docker",
-      "image": "progrium/cedarish:cedar14",
-      "commit": true
+      "image": "ubuntu:14.04.3",
+       "commit": true
     }
   ],
   "provisioners": [
     {
       "type": "shell",
       "inline": [
-        "curl --silent http://dl.gliderlabs.com/herokuish/latest/linux_x86_64.tgz | tar -xzC /bin"
+        "apt-get -y update",
+        "apt-get -y install curl tar gzip gcc g++ make rlwrap python",
+        "curl -L -o nodejs.deb https://deb.nodesource.com/node_0.12/pool/main/n/nodejs/nodejs_0.12.7-1nodesource1~trusty1_amd64.deb",
+        "dpkg -i nodejs.deb && rm nodejs.deb"
+
       ]
-    },
-    {
-      "type": "file",
-      "source": ".",
-      "destination": "/tmp/app"
     },
     {
       "type": "shell",
       "inline": [
-        "herokuish buildpack install https://github.com/heroku/heroku-buildpack-go",
-        "herokuish buildpack build",
-        "cd /app/bin",
-        "tar czvf /tmp/slug.tar.gz -C /app/bin .",
-        "sleep 5"
+        "mkdir -p /usr/local/nested/"
       ]
     },
     {
       "type": "file",
-      "source": "/tmp/slug.tar.gz",
-      "destination": "slug.tar.gz",
+      "source": "./",
+      "destination": "/usr/local/nested/"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "cd /usr/local/nested/",
+        "pwd",
+        "npm install -g npm@latest",
+        "npm install -g node-gyp",
+        "node-gyp rebuild",
+        "npm install .", 
+        "tar zcvf /nested.tar.gz ."
+      ]
+    },
+    {
+      "only": ["trusty"],
+      "type": "file",
+      "source": "/nested.tar.gz",
+      "destination": "nested-trusty.tar.gz",
       "direction": "download"
     }
   ],
@@ -42,7 +55,7 @@
     [
       {
         "type": "artifice",
-        "files": ["slug.tar.gz"]
+        "files": ["nested-{{.Provider}}.tar.gz"]
       },
       {
         "type": "atlas",
