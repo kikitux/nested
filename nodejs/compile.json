@@ -44,7 +44,6 @@
       ]
     },
     {
-      "only": ["trusty"],
       "type": "file",
       "source": "/nested.tar.gz",
       "destination": "nested-trusty.tar.gz",
