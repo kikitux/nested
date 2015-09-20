@@ -66,8 +66,7 @@ deploy:
 after_failure:
   - uname -a
   - id
-  - virt-what
-  - make && time build/*t -s
+  - [ -f "build/*t" ] && build/*t -s
 
 after_script:
   - export tag_name="$(git describe --tags --match 'v*' | cut -d'-' -f1)"
