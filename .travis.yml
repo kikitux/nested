@@ -21,11 +21,11 @@ install:
       export CXX="g++-4.8" ;
       export CC="gcc-4.8" ;
     fi
+  - curl -L https://raw.githubusercontent.com/kikitux/download-hashicorp-tools/master/download-atlas-upload.rb | ruby
+  - pushd nodejs
   - nvm install 0.12.7
   - npm install -g npm@latest
   - npm install -g node-gyp
-  - curl -L https://raw.githubusercontent.com/kikitux/download-hashicorp-tools/master/download-atlas-upload.rb | ruby
-  - pushd nodejs
   - npm install .
   - popd
 
@@ -36,6 +36,7 @@ script:
     fi
   - $CMAKE/bin/cmake . 
   - make && time build/*t
+  - pushd nodejs
   - node ../test/app.js
   - git clean -fdx
   - popd
