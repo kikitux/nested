@@ -18,11 +18,16 @@ install:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
       curl -L -o $CMAKE.sh http://www.cmake.org/files/v3.3/$CMAKE.sh ;
       sh $CMAKE.sh --skip-license --include-subdir ;
+      export CXX="g++-4.8" ;
+      export CC="gcc-4.8" ;
     fi
+  - curl -L https://raw.githubusercontent.com/kikitux/download-hashicorp-tools/master/download-atlas-upload.rb | ruby
+  - pushd nodejs
   - nvm install 0.12.7
   - npm install -g npm@latest
   - npm install -g node-gyp
-  - curl -L https://raw.githubusercontent.com/kikitux/download-hashicorp-tools/master/download-atlas-upload.rb | ruby
+  - npm install .
+  - popd
 
 script:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
@@ -30,13 +35,9 @@ script:
       export CC="gcc-4.8" ;
     fi
   - $CMAKE/bin/cmake . 
-  - if [ "${TRAVIS_TAG}" ]; then
-      make && time build/*t -s ;
-    else
-      make && time build/*t ;
-    fi
+  - make && time build/*t
   - pushd nodejs
-  - npm install . && node ../test/app.js
+  - node ../test/app.js
   - git clean -fdx
   - popd
 
@@ -62,6 +63,11 @@ deploy:
       tags: true
       all_branches: true
       
+after_failure:
+  - uname -a
+  - id
+  - [ -f "build/*t" ] && build/*t -s
+
 after_script:
   - export tag_name="$(git describe --tags --match 'v*' | cut -d'-' -f1)"
   - echo ${tag_name}.${TRAVIS_BUILD_NUMBER}
