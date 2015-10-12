@@ -68,9 +68,9 @@ size_t intfibdijkstra(size_t n) {
     if (n%2==0){
        size_t num = n/2;
        if (values[num-1]==0)
-           values.at(num-1)=intfibdijkstra(num-1);
+           values[num-1]=intfibdijkstra(num-1);
        if (values[num]==0)
-           values.at(num)=intfibdijkstra(num);
+           values[num]=intfibdijkstra(num);
        return (2*values[num-1]+values[num])*values[num];
     }
     else {
