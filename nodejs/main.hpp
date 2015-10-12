@@ -6,11 +6,11 @@
 #include <vector>
 #include <cmath>
 
-unsigned long Factorial(unsigned int number) {
+size_t Factorial(unsigned int number) {
   return number > 1 ? Factorial(number-1) *number : 1;
 }
 
-unsigned long Square(unsigned int number) {
+size_t Square(unsigned int number) {
   return number*number;
 }
 
@@ -54,8 +54,8 @@ template<> struct fibonacci<0> : std::integral_constant<size_t,0> {};
 // F(2n)    = (2*F(n-1) + F(n) )*F(n)
 // F(2n-1)  = F(n-1)^2 + F(n)^2
 
-unsigned long intfibdijkstra(unsigned long n) {
-    static std::vector<unsigned long> values = {0,1,1};
+size_t intfibdijkstra(size_t n) {
+    static std::vector<size_t> values = {0,1,1};
     if (n == 0 ) {
         return values[n];
     }
@@ -66,7 +66,7 @@ unsigned long intfibdijkstra(unsigned long n) {
         values.resize(n);
     }
     if (n%2==0){
-       unsigned long num = n/2;
+       size_t num = n/2;
        if (values[num-1]==0)
            values.at(num-1)=intfibdijkstra(num-1);
        if (values[num]==0)
@@ -74,7 +74,7 @@ unsigned long intfibdijkstra(unsigned long n) {
        return (2*values[num-1]+values[num])*values[num];
     }
     else {
-        unsigned long num = (n+1)/2;
+        size_t num = (n+1)/2;
         if (values[num-1]==0)
             values.at(num-1)=intfibdijkstra(num-1);
         if (values[num]==0)
@@ -83,12 +83,12 @@ unsigned long intfibdijkstra(unsigned long n) {
     }
 }
 
-unsigned long intfibonacci(unsigned long n) {
-    static std::vector<unsigned long> values = {0,1,1};
+size_t intfibonacci(size_t n) {
+    static std::vector<size_t> values = {0,1,1};
     if (n < values.size() ) {
         return values[n];
     }
-    for (unsigned long loop = values.size(); loop-1 < n ; ++loop){
+    for (size_t loop = values.size(); loop-1 < n ; ++loop){
         values.push_back(values[loop-2] + values[loop-1]);
     }
     return values[n];
