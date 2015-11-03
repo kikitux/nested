@@ -86,24 +86,29 @@ TEST_CASE( "Vector fun", "[vector]" ) {
 
 TEST_CASE( "Fibonnaci fun", "[fibonnaci]" ) {
 
-    constexpr long fibo10 = fibonacci<10>();
-    constexpr long fibo20 = fibonacci<20>();
-    constexpr long fibo30 = fibonacci<30>();
-    constexpr long fibo40 = fibonacci<40>();
-    constexpr long fibo50 = fibonacci<50>();
-    constexpr long fibo60 = fibonacci<60>();
+    constexpr size_t fibo10 = fibonacci<10>();
+    constexpr size_t fibo20 = fibonacci<20>();
+    constexpr size_t fibo30 = fibonacci<30>();
+    constexpr size_t fibo40 = fibonacci<40>();
+    constexpr size_t fibo50 = fibonacci<50>();
+    constexpr size_t fibo60 = fibonacci<60>();
+    constexpr size_t fibo70 = fibonacci<70>();
+    constexpr size_t fibo80 = fibonacci<80>();
 
     REQUIRE(intfibonacci(10)==fibo10);
     REQUIRE(intfibonacci(20)==fibo20);
-    REQUIRE(intfibonacci(30)==fibo30);
+    REQUIRE(intfibonacci(40)==fibo40);
+    REQUIRE(intfibonacci(80)==fibo80);
 
     REQUIRE(intfibdijkstra(10)==fibo10);
     REQUIRE(intfibdijkstra(20)==fibo20);
-    REQUIRE(intfibdijkstra(30)==fibo30);
+    REQUIRE(intfibdijkstra(40)==fibo40);
+    REQUIRE(intfibdijkstra(80)==fibo80);
 
     REQUIRE(fibo40==102334155);
     REQUIRE(fibo50==12586269025);
     REQUIRE(fibo60==1548008755920);
+    REQUIRE(fibo80==23416728348467685);
 
     REQUIRE(fast_fib(10)==fibo10);
     REQUIRE(fast_fib(20)==fibo20);
@@ -111,4 +116,7 @@ TEST_CASE( "Fibonnaci fun", "[fibonnaci]" ) {
     REQUIRE(fast_fib(40)==fibo40);
     REQUIRE(fast_fib(50)==fibo50);
     REQUIRE(fast_fib(60)==fibo60);
+    REQUIRE(fast_fib(70)==fibo70);
+    REQUIRE(fast_fib(80)==fibo80);
+
 }
